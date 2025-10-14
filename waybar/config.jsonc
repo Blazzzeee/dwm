@@ -1,0 +1,208 @@
+{
+  "layer": "bottom",
+  "position": "top",
+  "exclusive": true,
+  "gtk-layer-shell": true,
+  "passthrough": false,
+  "fixed-center": true,
+  "modules-left": ["custom/distrologo",
+  "hyprland/workspaces",
+],
+  "modules-center": [
+  "cpu",
+  "clock",
+  "memory"
+ ],
+  "modules-right": [
+    "tray",
+    "custom/sep",
+    "pulseaudio",
+    "network",
+    "bluetooth",
+    "custom/sep",
+    "power-profiles-daemon",
+    // "custom/screenshot",
+    "battery",
+    "custom/notification",
+    "custom/power",
+  ],
+
+  "hyprland/workspaces": {
+    "active-only": false,
+    "all-outputs": true,
+    "disable-scroll": false,
+    "on-scroll-up": "hyprctl dispatch workspace e-1",
+    "on-scroll-down": "hyprctl dispatch workspace e+1",
+    "format": "{icon}",
+    "on-click": "activate",
+    "format-icons": {
+      "active": "󰮯 ",
+      "default": "󰊠 ",
+      "sort-by-number": true
+    }
+  },
+
+ 
+"cpu": {
+  "format": "󰍛 {usage}% ", 
+  "tooltip": true,
+  "tooltip-format": "CPU Usage: {usage}%",
+  "interval": 2
+},
+
+"memory": {
+  "format": "󰘚 {used}/{total}",
+  "tooltip": true,
+  "tooltip-format": "RAM Used: {used}GB / {total}GB",
+  "interval": 2
+},
+ 
+  "custom/distrologo": {
+    "format":"󰣇 ",
+    "tooltip":true,
+    "tooltip-format":"I use Arch BTW",
+    "on-click": "rofi -show drun"
+  },
+
+  "custom/screenshot": {
+    "format":" ",
+    "tooltip":true,
+    "tooltip-format":"Screenshot",
+    "on-click": "~/.config/rofi/applets/screenshot.sh"
+  },
+    
+  "tray": {
+    "show-passive-items": true,
+    "spacing": 10
+  },
+
+  "battery": {
+    "format": "<span font='font awesome 5 free 11'>{icon} </span> {capacity}%",
+    "format-icons": [" ", " ", " ", " ", " "],
+    "format-charging": "<span font='font awesome 5 free'></span>  <span font='font awesome 5 free 11'>{icon}</span>  {capacity}%",
+    "format-full": "<span font='font awesome 5 free'></span>  <span font='font awesome 5 free 11'>{icon}</span>  charged",
+    "interval": 30,
+    "states": {
+      "warning": 15,
+      "critical": 10
+    },
+    "tooltip": false,
+  },
+
+  "pulseaudio": {
+    "format": "{icon}  {volume}%",
+    "format-muted": "  muted",
+    "format-icons": {
+      "headphone": " ",
+      "default": [" ", " ", " "]
+    },
+    "on-click": "pavucontrol"
+  },
+
+  "custom/sep": {
+    "format": " | ",
+    "tooltip": false
+  },
+
+  "bluetooth": {
+    "format-on": "󰂯",
+    "format-off": "󰂲",
+    "format-disabled": "󰂲",
+    "format-connected": "󰂱 {num_connections}",
+    "tooltip-format-connected": "{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+    "on-click": "~/.config/scripts/bluetooth.sh"
+  },
+
+  "custom/power": {
+    "tooltip": false,
+    "on-click": "~/.config/rofi/powermenu/powermenu.sh",
+    "format": "⏻"
+  },
+
+  "network": {
+    "format-wifi": "{icon}   {essid}",
+    "tooltip-format": "{icon} {essid}",
+    "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+    "format-ethernet": "{ifname} ",
+    "format-disconnected": " ",
+    "max-length": 50,
+    "on-click": "network_manager"
+  },
+
+  "custom/notification": {
+    "tooltip": false,
+    "format": "{icon}",
+    "format-icons": {
+      "notification": " <span foreground='red'><sup></sup></span>",
+      "none": " ",
+      "dnd-notification": " <span foreground='red'><sup></sup></span>",
+      "dnd-none": " ",
+      "inhibited-notification": " <span foreground='red'><sup></sup></span>",
+      "inhibited-none": " ",
+      "dnd-inhibited-notification": " <span foreground='red'><sup></sup></span>",
+      "dnd-inhibited-none": " "
+    },
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "escape": true
+  },
+
+"clock": {
+  "format": "[ {:%H:%M} ]",
+  "interval": 60,
+  "format-alt": "{:%b %d %Y}",
+  "tooltip": true,
+  "tooltip-format": "{calendar}",
+  "calendar": {
+    "mode": "month",
+    "mode-mon-col": 1,
+    "on-scroll": 1,
+    "format": {
+      "months":   "<span font='monospace 18' color='#ffffff'><b>{}</b></span>",
+      "weekdays": "<span font='monospace 18' color='#6c7086'><b>{}</b></span>",
+      "days":     "<span font='monospace 18' color='#ffffff'>{}</span>",
+      "today":    "<span font='monospace18' color='#ffffff'><b>{}</b></span>"
+    }
+  },
+  "actions": {
+    "on-click-right": "mode",
+    "on-scroll-up":   "shift_up",
+    "on-scroll-down": "shift_down"
+  },
+},
+"power-profiles-daemon": {
+  "format": "{icon} ",
+  "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+  "tooltip": true,
+"format-icons": {
+  "default": "<span color='#f6c177'></span>",
+  "performance": "<span color='#f6c177'></span>",
+  "balanced": "<span color='#eb6f92'></span>",
+  "power-saver": "<span color='#9ccfd8'></span>"
+}
+},
+
+"mpris": {
+    "format": "[ {status_icon} {title:10} ]",
+    "status-icons": {
+      "playing": "󰏤",
+      "paused": "󰐊",
+      "stopped": "󰐊"
+    },
+    
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "playerctl play-pause",
+    "on-click-right": "playerctl next",
+    "on-click-middle": "playerctl previous",
+    "on-scroll-up": "playerctl position 5+",
+    "on-scroll-down": "playerctl position 5-",
+    "tooltip": false,
+ },
+
+
+}

@@ -1,0 +1,132 @@
+@import "color.css";
+
+* {
+  font-family: "JetBrainsMono Nerd";
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: @color5; /* Replaced @nord5 */
+}
+
+window#waybar {
+  transition-property: background-color;
+  background-color: transparent; 
+  color: @color5; /* Replaced @nord5 */
+}
+
+#pulseaudio {
+  padding: 0rem 0rem;
+  margin: 0rem 0.25rem;
+  font-size:1rem;
+  color: @color8; /* Replaced @nord8 */
+}
+
+#cpu {
+  /* color: @color13; */
+}
+
+#memory {
+  /* color: @color13; */
+}
+
+#pulseaudio.muted {
+  color: #a6adc8;
+}
+
+#custom-power {
+  font-size:1.2rem;
+  margin: 0.2rem 0.0rem;
+  color: @color11; /* Replaced @nord11 */
+  padding: 0 0.7rem 0 0.2rem;
+}
+
+#custom-notification {
+  color: @color7; /* Replaced @nord7 */
+  font-size: 1.2rem;
+  padding: 0px 0.2rem 0 0.6rem;
+  margin : 0rem 0 0 0.3rem;
+}
+
+tooltip {
+  background-color: @color0; /* Replaced @nord0 */
+  font-weight: 700;
+}
+
+#network {
+  font-size: 1rem;
+  padding: 0.3rem 0.2rem;
+  margin: 0.4rem 0.25rem;
+}
+
+#bluetooth {
+  font-size:1.3rem;
+  padding: 0.3rem 0rem;
+  margin: 0.3rem 0.5rem;
+}
+
+#battery {
+  font-size: 1rem;
+  padding: 0.3rem 0rem;
+  margin: 0.3rem 0.2rem;
+}
+
+#clock {
+  padding: 0.0rem 0rem 0rem 0rem;
+  margin: 0.0rem 0.5rem;
+  font-family: "monospace";
+  font-size: 1.1rem;
+  font-weight: 900;
+  transition: transform 0.5s ease-in-out;
+}
+
+#clock:hover {
+  transition: opacity 0.3s ease-in-out;
+}
+
+#power-profiles-daemon {
+  padding: 0.3rem 0.2rem;
+  margin: 0.4rem 0.25rem;
+  font-size: 1.3rem;
+}
+
+#custom-distrologo {
+  padding: 0.4rem 0.6rem;
+  margin: 0.4rem 0.25rem;
+  border-radius: 6px;
+  font-family: "JetBrainsMono Nerd Font", monospace;
+  font-size: 24px;
+  color: @color8; /* Replaced @nord8 */
+}
+
+#custom-screenshot {
+  padding: 0.4rem 0rem;
+  margin: 0.4rem 0rem;
+  font-family: "JetBrainsMono Nerd Font", monospace;
+  font-size: 22px;
+  color: @color5; /* Replaced @nord5 */
+}
+
+
+#workspaces button,
+#workspaces button:active,
+#workspaces button.urgent {
+    color: @color1;
+}
+
+#workspaces button.active {
+    color: @color0;
+}
+
+#workspaces button.urgent {
+    color: @color2;
+}
+
+#tray {
+  font-size: 2rem;
+  padding: 0.3rem 0 0 0;
+}
+
+
+#custom-sep {
+  font-size: 1.2rem;
+  /* padding: 0.1rem 0 0 0; */
+}
