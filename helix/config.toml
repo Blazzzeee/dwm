@@ -1,0 +1,38 @@
+theme = "rose_pine"
+# theme = "nord-night"
+
+[editor]
+line-number = "relative"
+end-of-line-diagnostics = "hint"
+[editor.inline-diagnostics]
+cursor-line = "warning" # show warnings and errors on the cursorline inline
+
+
+
+[editor.statusline]
+left   = ["mode", "separator", "diagnostics", "separator", "file-name"]
+center = [ "separator", "version-control", "separator"]
+right = [ "file-type", ]
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+separator = "|"
+
+[keys.normal]
+esc = ["collapse_selection", "keep_primary_selection"]
+S-r = [":config-reload"] 
+y = "yank_joined_to_clipboard"
+- = [
+  ':sh rm -f /tmp/unique-file',
+  ':insert-output yazi %{buffer_name} --chooser-file=/tmp/unique-file',
+  ':insert-output echo "\x1b[?1049h\x1b[?2004h" > /dev/tty',
+  ':open %sh{cat /tmp/unique-file}',
+  ':redraw',
+]
+# f t = ":sh alacritty"  
+
+[editor.file-picker]
+hidden = true
+git-ignore = false
+
+
