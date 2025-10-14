@@ -1,0 +1,48 @@
+configuration {
+  modi: "drun";
+  display-drun: "";
+  show-icons: false;
+  drun-display-format: "{name}";
+  font: "JetBrains Mono 16";
+      listview-hover-select: true;
+} 
+*{
+    background-color:      #181926;
+    border-color:          White;
+    text-color:           #cad3f5;
+}
+window {
+    height: 4.6%;
+    anchor: north;
+    y-offset: -4.7%;
+    location: northwest;
+    width:100%;
+    padding: 4px;
+    children:   [ horibox ];
+}
+horibox {
+    orientation: horizontal;
+    children:   [ prompt, entry, listview ];
+}
+listview {
+    layout:     horizontal;
+    spacing:    10px;
+    lines:      5;
+}
+entry {
+    expand:     true;
+    width:      10em;
+}
+element {
+    padding: 0px 2px;
+    text-color: #c6a0f6;
+}
+element selected {
+    background-color: transparent;
+    text-color: #eed49f;
+}
+
+element-text, element-icon {
+  background-color: inherit;
+  text-color: inherit;
+}
