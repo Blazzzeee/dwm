@@ -9,10 +9,10 @@ static const char *fonts[] = { "JetBrainsMono Nerd Font:style=Regular:size=12" }
 static const char dmenufont[]       = "JetBrainsMono Nerd:size=12";
 
 // Catppuccin Mocha
-static const char col_bg[]    = "#1e1e2e";  // base (background)
+static const char col_bg[]    = "#11111b";  // base (background)
 static const char col_fg[]    = "#cdd6f4";  // text
 static const char col_gray[]  = "#585b70";  // surface1 (muted border for normal windows)
-static const char col_selbg[] = "#f5c2e7";  // blue (selection background)
+static const char col_selbg[] = "#b4befe";  // blue (selection background)
 static const char col_selfg[] = "#1e1e2e";  // base (selection foreground)
 
 /* Color scheme */
@@ -68,9 +68,9 @@ static const char *brightnessup[] = {"/home/blazzee/.config/scripts/brightness.s
 static const char *brightnessdown[] = {"/home/blazzee/.config/scripts/brightness.sh", "dec", NULL};
 static const char *volumeup[] = {"/home/blazzee/.config/scripts/volume.sh", "inc", "10", NULL};
 static const char *volumedown[] = {"/home/blazzee/.config/scripts/volume.sh", "dec", "10", NULL};
-static const char *powermenu[] = {"/home/blazzee/.config/rofi/powermenu/powermenu.sh", NULL};
+static const char *powermenu[] = {"/home/blazzee/.config/scripts/powermenu.sh", NULL};
 static const char *min[] = {"min-browser", NULL};
-static const char *slack[] = {"/usr/bin/slack", NULL};
+static const char *slack[] = {"flatpak run com.slack.Slack &", NULL};
 static const char *browser[] = {"brave", NULL};
 static const char *zellij_resurrect[] = {"/home/blazzee/.config/scripts/zellij.sh", NULL};
 static const char *nm_ui[] = {"network_manager", NULL};
@@ -131,8 +131,8 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
   { MODKEY, XK_p, spawn, SHCMD("current=$(powerprofilesctl get); if [ \"$current\" = performance ]; then next=balanced; elif [ \"$current\" = balanced ]; then next=power-saver; else next=performance; fi; powerprofilesctl set \"$next\" && notify-send 'Power Profile' \"Switched to: $next\"") },
-  { 0, XK_F6,  spawn,          {.v = brightnessup} },
-  { 0, XK_F, spawn,          {.v = brightnessdown} },
+	{ 0, XF86XK_MonBrightnessUp,   spawn, {.v = brightnessup} },
+	{ 0, XF86XK_MonBrightnessDown, spawn, {.v = brightnessdown} },
 	{ 0, XF86XK_AudioRaiseVolume,   spawn, {.v = volumeup} },
 	{ 0, XF86XK_AudioLowerVolume,   spawn, {.v = volumedown} },
   { MODKEY,                       XK_minus,      setgaps,        {.i = -5 } },

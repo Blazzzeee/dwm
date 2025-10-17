@@ -9,10 +9,12 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, ... }:
+  outputs = { nixpkgs, home-manager, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
+      lib = home-manager.lib;
+      sudo = "${pkgs.sudo}/bin/sudo";
 
       # Custom patched Suckless builds
       myDwm = pkgs.stdenv.mkDerivation {
@@ -51,11 +53,7 @@
         '';
       };
 
-      # List all scripts in scripts/ directory
-      scriptFiles = builtins.attrNames (builtins.readDir ./scripts);
-
-    in
-    {
+    in {
       homeConfigurations."blazzee" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
 
@@ -63,9 +61,8 @@
           {
             home.username = "blazzee";
             home.homeDirectory = "/home/blazzee";
-
-            programs.home-manager.enable = true;
             home.stateVersion = "24.05";
+            programs.home-manager.enable = true;
 
             home.packages = with pkgs; [
               dunst
@@ -82,7 +79,11 @@
 
             # Dunst config
             home.file.".config/dunst/dunstrc".source = ./dunst/dunstrc;
-            # Desktop entry for DWM
+
+            home.file.".config/greetd/config.toml".source =
+              builtins.path { path = ./greetd/config.toml; };
+
+            # DWM desktop entry
             home.file.".local/share/xsessions/dwm.desktop".text = ''
               [Desktop Entry]
               Name=DWM
@@ -92,7 +93,7 @@
               Type=XSession
             '';
 
-            # Enable X session support
+            # X session
             xsession.enable = true;
             xsession.windowManager.command = "${myDwm}/bin/dwm";
           }

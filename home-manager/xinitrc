@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# Start XDG desktop portal for GTK
+/usr/lib/xdg-desktop-portal-gtk &
+
+# Start notifications daemon
+dunst &
+
+# Start dwmblocks (only once, avoid duplicate instances)
+pkill dwmblocks >/dev/null 2>&1
+dwmblocks &
+
+nitrogen --restore
+
+# Finally start dwm (this must be exec so X exits when dwm exits)
+exec dwm

@@ -6,7 +6,7 @@ sessions=$(zellij list-sessions | awk '{print $1}' | sed 's/\x1B\[[0-9;]*[JKmsu]
 [[ -z "$sessions" ]] && { echo "No Zellij sessions found."; exit 1; }
 
 # Use tofi instead of dmenu
-selected=$(echo "$sessions" | tofi --prompt-text "resurrect :" --config ~/.config/tofi/dmenu)
+selected=$(echo "$sessions" | dmenu -p "rescurrect: ")
 
 [[ -z "$selected" ]] && exit 0
 
