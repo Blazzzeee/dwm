@@ -80,6 +80,8 @@
               pamixer
               jetbrains-mono
               slack
+              libinput-gestures
+              xdotool
             ];
 
             
@@ -105,6 +107,27 @@
             # X session
             xsession.enable = true;
             xsession.windowManager.command = "${myDwm}/bin/dwm";          
+
+            #gesture stuff
+            home.file.".config/libinput-gestures.conf".text = ''
+              gesture swipe left  xdotool key super+Right
+              gesture swipe right xdotool key super+Left
+              gesture swipe up    kitty
+              gesture swipe down  dmenu_run
+            '';
+
+            # 🧠 systemd user service for gestures
+            systemd.user.services.libinput-gestures = {
+              Unit = {
+                Description = "Libinput Gestures Daemon";
+                After = [ "graphical-session-pre.target" ];
+              };
+              Service = {
+              ExecStart = "${pkgs.libinput-gestures}/bin/libinput-gestures -c $HOME/.config/libinput-gestures.conf";
+                Restart = "on-failure";
+              };
+              Install.WantedBy = [ "graphical-session.target" ];
+            };
           }
         ];
       };
