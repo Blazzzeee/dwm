@@ -15,7 +15,7 @@ fi
 # Copy greetd config
 echo "Copying greetd config..."
 $SUDO mkdir -p /etc/greetd
-$SUDO cp ~/.config/greetd/config.toml /etc/greetd/config.toml
+$SUDO cp /home/blazzee/.config/home-manager/greetd/config.toml /etc/greetd/config.toml
 $SUDO chown root:root /etc/greetd/config.toml
 
 # Enable greetd service

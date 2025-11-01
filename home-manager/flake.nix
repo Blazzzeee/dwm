@@ -12,16 +12,20 @@
   outputs = { nixpkgs, home-manager, ... }@inputs:
     let
       system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
+      pkgs = import nixpkgs {
+          system = "x86_64-linux";
+          config = {
+            allowUnfree = true;
+          };
+        };
       lib = home-manager.lib;
-      sudo = "${pkgs.sudo}/bin/sudo";
 
       # Custom patched Suckless builds
       myDwm = pkgs.stdenv.mkDerivation {
         pname = "dwm";
         version = "patched";
         src = ./suckless/dwm;
-        nativeBuildInputs = [ pkgs.fontconfig pkgs.xorg.libX11 pkgs.xorg.libXft pkgs.jetbrains-mono ];
+        nativeBuildInputs = [ pkgs.fontconfig pkgs.xorg.libX11 pkgs.xorg.libXft pkgs.jetbrains-mono pkgs.xorg.libXinerama ];
         installPhase = ''
           make PREFIX=$out install
         '';
@@ -75,9 +79,14 @@
               nitrogen
               pamixer
               jetbrains-mono
+              slack
             ];
 
-            # Dunst config
+            
+            home.sessionVariables.PATH = ''
+              ${pkgs.corepack}/bin:$PATH
+            '';
+          # Dunst config
             home.file.".config/dunst/dunstrc".source = ./dunst/dunstrc;
 
             home.file.".config/greetd/config.toml".source =
@@ -95,7 +104,7 @@
 
             # X session
             xsession.enable = true;
-            xsession.windowManager.command = "${myDwm}/bin/dwm";
+            xsession.windowManager.command = "${myDwm}/bin/dwm";          
           }
         ];
       };

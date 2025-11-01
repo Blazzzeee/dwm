@@ -22,7 +22,7 @@ static const char *colors[][3] = {
 	[SchemeSel]  = { col_selfg, col_selbg, col_fg   },   // focused
 };
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6"};
+static const char *tags[] = { "  Term", "  Web", "  Code ", "  Work", "  Misc", "  Music"};
 // static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
 static const Rule rules[] = {
@@ -164,4 +164,9 @@ static const Button buttons[] = {
 	{ ClkTagBar,            0,              Button3,        toggleview,     {0} },
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
+};
+
+static const Gesture gestures[] = {
+    { "l",  view_adjacent, { .i = -1 } }, // swipe left → previous tag
+    { "r",  view_adjacent, { .i = +1 } }, // swipe right → next tag
 };
