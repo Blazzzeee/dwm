@@ -5,14 +5,14 @@ static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[] = { "JetBrainsMono Nerd Font:style=Regular:size=12" };
-static const char dmenufont[]       = "JetBrainsMono Nerd:size=12";
+static const char *fonts[] = { "JetBrainsMono Nerd Font:style=Regular:size=10" };
+static const char dmenufont[]       = "JetBrainsMono Nerd:size=10";
 
 // Catppuccin Mocha
 static const char col_bg[]    = "#11111b";  // base (background)
 static const char col_fg[]    = "#cdd6f4";  // text
 static const char col_gray[]  = "#585b70";  // surface1 (muted border for normal windows)
-static const char col_selbg[] = "#b4befe";  // blue (selection background)
+static const char col_selbg[] = "#b4befe"; 
 static const char col_selfg[] = "#1e1e2e";  // base (selection foreground)
 
 /* Color scheme */
@@ -22,7 +22,8 @@ static const char *colors[][3] = {
 	[SchemeSel]  = { col_selfg, col_selbg, col_fg   },   // focused
 };
 /* tagging */
-static const char *tags[] = { "  Term", "  Web", "  Code ", "  Work", "  Misc", "  Music"};
+static const char *tags[] = {"   Term","   Code","   Net","   File","   Mus","   Set"};
+// static const char *tags[] = { "1", "2", "3", "4", "5", "6"};
 // static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
 static const Rule rules[] = {
@@ -70,7 +71,7 @@ static const char *volumeup[] = {"/home/blazzee/.config/scripts/volume.sh", "inc
 static const char *volumedown[] = {"/home/blazzee/.config/scripts/volume.sh", "dec", "10", NULL};
 static const char *powermenu[] = {"/home/blazzee/.config/scripts/powermenu.sh", NULL};
 static const char *min[] = {"min-browser", NULL};
-static const char *slack[] = {"flatpak run com.slack.Slack &", NULL};
+static const char *slack[] = {"/usr/bin/slack", NULL};
 static const char *browser[] = {"brave", NULL};
 static const char *zellij_resurrect[] = {"/home/blazzee/.config/scripts/zellij.sh", NULL};
 static const char *nm_ui[] = {"network_manager", NULL};
@@ -164,9 +165,4 @@ static const Button buttons[] = {
 	{ ClkTagBar,            0,              Button3,        toggleview,     {0} },
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
-};
-
-static const Gesture gestures[] = {
-    { "l",  view_adjacent, { .i = -1 } }, // swipe left → previous tag
-    { "r",  view_adjacent, { .i = +1 } }, // swipe right → next tag
 };

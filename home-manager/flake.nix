@@ -27,7 +27,7 @@
         src = ./suckless/dwm;
         nativeBuildInputs = [ pkgs.fontconfig pkgs.xorg.libX11 pkgs.xorg.libXft pkgs.jetbrains-mono pkgs.xorg.libXinerama ];
         installPhase = ''
-          make PREFIX=$out install
+          make PREFIX=$out clean install
         '';
       };
 
@@ -35,9 +35,9 @@
         pname = "dmenu";
         version = "patched";
         src = ./suckless/dmenu;
-        nativeBuildInputs = [ pkgs.fontconfig pkgs.xorg.libX11 pkgs.xorg.libXft pkgs.jetbrains-mono ];
+        nativeBuildInputs = [ pkgs.fontconfig pkgs.xorg.libX11 pkgs.xorg.libXft pkgs.jetbrains-mono pkgs.xorg.libXinerama];
         installPhase = ''
-          make PREFIX=$out install
+          make PREFIX=$out clean install
         '';
       };
 

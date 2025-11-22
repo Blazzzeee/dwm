@@ -13,6 +13,7 @@ dwmblocks &
 nitrogen --restore
 export PATH="$HOME/.nix-profile/bin:$PATH"
 compfy &
+libinput-gestures-setup start
 
 # Finally start dwm (this must be exec so X exits when dwm exits)
 exec dwm
