@@ -104,3 +104,13 @@ bind \ey y
 
 alias nv="nvim ."
 alias vim="nvim"
+set -gx PATH $HOME/.nix-profile/bin $PATH
+
+# set -x ANTHROPIC_AUTH_TOKEN $AGENT_ROUTER_TOKEN
+# Set AgentRouter's API base URL
+
+function fish_title
+end
+
+set -U fish_greeting
+
