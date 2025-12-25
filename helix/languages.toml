@@ -1,3 +1,19 @@
+[language-server.scls]
+command = "simple-completion-language-server"
+
+[language-server.scls.config]
+feature_words = true
+feature_snippets = true
+snippets_first = true
+snippets_inline_by_word_tail = false
+feature_unicode_input = false
+feature_paths = false
+feature_citations = false
+
+[language-server.scls.environment]
+RUST_LOG = "info,simple-completion-language-server=info"
+LOG_FILE = "/tmp/completion.log"
+
 [[language]]
 name = "c"
 auto-format = false
@@ -9,7 +25,8 @@ language-servers = ["clangd"]
 name = "python"
 auto-format = false
 language-id = "python"
-language-servers = ["ruff-lsp", "pyright"]
+language-servers = ["ruff-lsp", "pyright", "scls"]
+file-types = ["py", "pyi", "pyx"]
 
 # TypeScript
 [[language]]
@@ -51,5 +68,19 @@ args = ["--stdio"]
 
 
 [language-server.ruff-lsp]
-command = "ruff-lsp"
-args = ["server"]
+command = "ruff server"
+
+
+# Ruby
+[[language]]
+name = "ruby"
+file-types = ["rb", "rake", "gemspec", "ru", "thor", "erb"]
+roots = ["Gemfile"]
+language-servers = ["ruby-lsp"]
+auto-format = false
+
+# Ruby LSP (uses global binary; bundler fallback handled via Gemfile inclusion)
+[language-server.ruby-lsp]
+command = "ruby-lsp"
+required-root-patterns = ["Gemfile"]
+config = { formatter = "standard" }
